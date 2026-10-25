@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PixelVerse</title>
+<style>
+:root{--bg:#f2f2f7;--fg:#1d1d1f;--mut:#6e6e73;--card:rgba(255,255,255,.72);--line:rgba(0,0,0,.08);--blue:#0a84ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0b10;--fg:#f5f5f7;--mut:#9a9aa3;--card:rgba(44,44,54,.62);--line:rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--bg:#0b0b10;--fg:#f5f5f7;--mut:#9a9aa3;--card:rgba(44,44,54,.62);--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box}html{scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.45;z-index:-1;animation:drift 18s ease-in-out infinite alternate}
+.o1{width:420px;height:420px;background:#7a5cff;top:-120px;left:-100px}.o2{width:380px;height:380px;background:#0a84ff;top:30%;right:-120px;animation-delay:-6s}.o3{width:340px;height:340px;background:#ff5c8a;bottom:-120px;left:25%;animation-delay:-11s}
+@keyframes drift{to{transform:translate(60px,80px) scale(1.15)}}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;margin:12px auto 0;max-width:980px;width:calc(100% - 24px);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px 8px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);animation:drop .7s cubic-bezier(.2,.9,.3,1.2) both}
+@keyframes drop{from{transform:translateY(-40px);opacity:0}}
+.logo{font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.logo i{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#7a5cff,#0a84ff);display:inline-block;box-shadow:inset 0 1px 1px #fff8}
+nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav a{color:var(--fg);text-decoration:none;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;transition:.25s}
+nav a:hover{background:var(--line)}nav a.on{background:var(--blue);color:#fff}
+main{max-width:980px;margin:0 auto;padding:0 16px 80px}
+.page{display:none}.page.show{display:block;animation:pg .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pg{from{opacity:0;transform:translateY(24px) scale(.98)}}
+.hero{text-align:center;padding:70px 0 30px}
+.hero h1{font-size:clamp(40px,8vw,76px);line-height:1.02;letter-spacing:-.04em;margin:0 0 16px;font-weight:800}
+.grad{background:linear-gradient(90deg,#7a5cff,#0a84ff,#ff5c8a,#7a5cff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:300% 0}}
+.hero p{color:var(--mut);font-size:19px;max-width:560px;margin:0 auto 26px}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{appearance:none;border:0;cursor:pointer;font:600 16px/1 inherit;font-family:inherit;padding:14px 26px;border-radius:999px;color:#fff;background:linear-gradient(180deg,#4aa3ff,#0a84ff 55%,#0071e3);box-shadow:inset 0 1px 0 #fff7,inset 0 -2px 4px #0003,0 8px 20px #0a84ff55;transition:transform .2s cubic-bezier(.3,1.6,.5,1),box-shadow .2s;text-decoration:none;display:inline-block;text-align:center}
+.btn:hover{transform:translateY(-2px) scale(1.03)}.btn:active{transform:scale(.94)}
+.btn.g{color:var(--fg);background:var(--card);box-shadow:inset 0 1px 0 #fff6,0 0 0 1px var(--line);backdrop-filter:blur(14px)}
+.btn.r{background:linear-gradient(180deg,#ff6b60,#ff3b30 55%,#e0281e);box-shadow:inset 0 1px 0 #fff7,0 8px 20px #ff3b3055}
+.btn.o{background:linear-gradient(180deg,#ffb340,#ff9500 55%,#e07f00);box-shadow:inset 0 1px 0 #fff7,0 8px 20px #ff950055}
+.btn.s{padding:9px 16px;font-size:14px}.btn[disabled]{opacity:.4;pointer-events:none}
+.icons{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:44px auto 10px;max-width:700px}
+.ic{aspect-ratio:1;border-radius:24%;display:grid;place-items:center;font-size:clamp(24px,5vw,42px);box-shadow:inset 0 2px 2px #fff8,inset 0 -6px 12px #0003,0 14px 30px #0003;animation:fl 4s ease-in-out infinite;transition:scale .3s cubic-bezier(.3,1.6,.5,1),rotate .3s cubic-bezier(.3,1.6,.5,1)}
+.ic:hover{scale:1.2;rotate:-6deg}
+.ic:nth-child(2n){animation-delay:-1.3s}.ic:nth-child(3n){animation-delay:-2.4s}
+@keyframes fl{50%{transform:translateY(-14px)}}
+.sec{margin-top:70px}.sec h2{font-size:clamp(28px,5vw,42px);letter-spacing:-.03em;margin:0 0 8px;text-align:center}
+.sub{color:var(--mut);text-align:center;margin:0 0 30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:26px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:transform .35s cubic-bezier(.2,.9,.3,1.3),box-shadow .35s}
+.card:hover{transform:translateY(-8px);box-shadow:0 24px 50px #0003}
+.card h3{margin:0 0 6px;font-size:22px}.card p{color:var(--mut);margin:0}
+.rv{opacity:0}.rv.in{opacity:1;animation:rise .8s cubic-bezier(.2,.8,.2,1) backwards}
+.price{font-size:44px;font-weight:800;letter-spacing:-.03em;margin:10px 0}.price small{font-size:15px;color:var(--mut);font-weight:500}
+.plan ul{list-style:none;padding:0;margin:14px 0 22px;display:grid;gap:9px}.plan li::before{content:"✓";color:#30d158;font-weight:800;margin-right:9px}
+.plan .btn{width:100%}.pop{border:2px solid var(--blue);position:relative}
+.tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px}
+.note{font-size:12.5px;color:var(--mut);margin-top:10px;text-align:center}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+.chip{border:0;cursor:pointer;font:600 14px inherit;font-family:inherit;padding:8px 16px;border-radius:99px;background:var(--card);color:var(--fg);box-shadow:0 0 0 1px var(--line);transition:.25s}.chip.on{background:var(--blue);color:#fff}
+.ord{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;padding:18px 22px;animation:pg .5s backwards}
+.ord .m{flex:1;min-width:170px}.ord b{font-size:17px}.ord span{color:var(--mut);font-size:13.5px;display:block}
+.st{padding:5px 13px;border-radius:99px;font-size:13px;font-weight:700;color:#fff}
+.Pending{background:#ff9f0a}.Accepted{background:#30d158}.Declined{background:#ff453a}.Other{background:#8e8e93}
+.cd{font-variant-numeric:tabular-nums;font-weight:700;color:#30d158;font-size:15px;text-align:right}.cd small{display:block;color:var(--mut);font-weight:500;font-size:11px}
+.empty{text-align:center;color:var(--mut);padding:50px 0}
+input[type=text],input[type=password]{width:100%;font:500 17px inherit;font-family:inherit;padding:14px 18px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--fg);outline:0;transition:.25s}
+input:focus{box-shadow:0 0 0 4px #0a84ff44;border-color:var(--blue)}
+.gate{max-width:380px;margin:60px auto;text-align:center}.gate input{margin:16px 0}
+.shake{animation:sh .4s}@keyframes sh{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+.ord input[type=checkbox]{width:22px;height:22px;accent-color:var(--blue)}
+.ov{position:fixed;inset:0;z-index:100;background:#0007;backdrop-filter:blur(8px);display:none;place-items:center;padding:16px}
+.ov.show{display:grid;animation:fd .25s both}@keyframes fd{from{opacity:0}}
+.md{width:100%;max-width:420px;background:var(--bg);border-radius:30px;padding:28px;border:1px solid var(--line);animation:pop .45s cubic-bezier(.2,1.2,.3,1) both}
+@keyframes pop{from{transform:scale(.8) translateY(30px);opacity:0}}
+.md h3{margin:0 0 4px;font-size:24px}.md p{color:var(--mut);margin:0 0 16px;font-size:14.5px}.md .row{margin-top:16px}.md .btn{flex:1}
+.err{color:#ff453a;font-size:13px;min-height:18px;margin-top:6px}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:30px 0 20px}
+@media(max-width:560px){.logo span{display:none}.icons{gap:8px}}
+.hero>*{animation:rise .9s cubic-bezier(.2,.9,.3,1.1) both}.hero>*:nth-child(2){animation-delay:.12s}.hero>*:nth-child(3){animation-delay:.24s}.hero>*:nth-child(4){animation-delay:.36s}
+@keyframes rise{from{opacity:0;transform:translateY(34px) scale(.96)}}
+.grid>.rv.in:nth-child(2){animation-delay:.15s}.grid>.rv.in:nth-child(3){animation-delay:.3s}
+.st.Pending{animation:pulse 1.8s ease-in-out infinite}@keyframes pulse{0%,100%{box-shadow:0 0 0 0 #ff9f0a88}50%{box-shadow:0 0 0 9px #ff9f0a00}}
+.btn::after{content:"";position:absolute}.btn{position:relative;overflow:hidden}
+.btn:not(.g):not(.s)::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#fff6,transparent);transform:skewX(-20deg);animation:sweep 3.5s ease-in-out infinite}
+@keyframes sweep{0%,60%{left:-60%}100%{left:130%}}
+.logo i{animation:spin 8s linear infinite}@keyframes spin{50%{transform:rotate(180deg) scale(1.15)}to{transform:rotate(360deg)}}
+</style></head><body>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+<header><div class="logo"><i></i><span>PixelVerse</span></div>
+<nav id="nav"><a href="#home" data-p="home">Home</a><a href="#about" data-p="about">About Us</a><a href="#plans" data-p="plans">Plans</a><a href="#orders" data-p="orders">Orders</a><a href="#admin" data-p="admin">Owner Admin</a></nav></header>
+<main>
+<section class="page" id="home">
+ <div class="hero"><h1>Beautiful Roblox UI,<br><span class="grad">crafted in glass.</span></h1>
+ <p>PixelVerse designs polished, iOS-inspired interfaces for your Roblox game. Pick a plan and ship something people love.</p>
+ <div class="row"><a class="btn" href="#plans">View Plans</a><a class="btn g" href="#about">Learn More</a></div>
+ <div class="icons"><div class="ic" style="background:linear-gradient(#ff6b60,#ff2d3a)">🚀</div><div class="ic" style="background:linear-gradient(#444,#111)">📈</div><div class="ic" style="background:linear-gradient(#ffd60a,#ffa800)">💡</div><div class="ic" style="background:linear-gradient(#4cd964,#09c652)">📍</div><div class="ic" style="background:linear-gradient(#8e7bff,#5a3df0)">🎨</div><div class="ic" style="background:linear-gradient(#aaa,#6c6c72)">⚙️</div></div></div>
+ <div class="sec"><h2 class="rv">Everything your game needs</h2><p class="sub rv">Clean, fast and made to feel native.</p>
+ <div class="grid"><div class="card rv"><h3>🧊 Glass menus</h3><p>Blurred, translucent panels with smooth spring motion.</p></div><div class="card rv"><h3>🎛️ iOS-style buttons</h3><p>Glossy, rounded and satisfying to press.</p></div><div class="card rv"><h3>⚡ Ready to drop in</h3><p>Delivered to your Roblox username and easy to install.</p></div></div></div>
+</section>
+<section class="page" id="about"><div class="hero"><h1>About <span class="grad">PixelVerse</span></h1><p>We’re a tiny crew of designers and builders who believe every Roblox game deserves an interface as nice as a modern phone.</p></div>
+ <div class="grid"><div class="card rv"><h3>✨ Our story</h3><p>It started with one blocky menu that nobody wanted to click. A few late nights later, PixelVerse was born.</p></div><div class="card rv"><h3>🎯 Our goal</h3><p>Make great UI accessible to every developer, from first-timers to big studios.</p></div><div class="card rv"><h3>🤝 Our promise</h3><p>Fast delivery, friendly support and designs that keep getting better.</p></div></div></section>
+<section class="page" id="plans"><div class="hero" style="padding-bottom:10px"><h1>Pick your <span class="grad">plan</span></h1><p>Monthly plans. On Pro and Max you can get it now and pay later, with a watermark on your UIs until you pay.</p></div>
+ <div class="grid" id="pg" style="margin-top:30px"></div></section>
+<section class="page" id="orders"><div class="hero" style="padding-bottom:20px"><h1>Your <span class="grad">orders</span></h1></div><div class="chips" id="chips"></div><div id="ol"></div></section>
+<section class="page" id="admin"><div id="ad"></div></section>
+</main>
+<footer>© PixelVerse · Not affiliated with Roblox Corporation</footer>
+<div class="ov" id="ov"><div class="md"><h3 id="mt"></h3><p id="mp"></p><input type="text" id="un" placeholder="Roblox username" maxlength="20" autocomplete="off"><div class="err" id="er"></div><div class="row"><button class="btn g" id="cx">Cancel</button><button class="btn" id="ok" disabled>Confirm</button></div></div></div>
+<script>
+const $=s=>document.querySelector(s),E=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const K="pv_orders",DAY=864e5*30;let orders=[],plan=null,mode="free",unlocked=false,filt="All",cur="home";
+try{orders=JSON.parse(localStorage.getItem(K))||[]}catch(e){}
+const DB_URL="https://pixelverse-70036-default-rtdb.europe-west1.firebasedatabase.app";/* paste your Firebase Realtime Database URL here to share orders worldwide */
+let mine=[];try{mine=JSON.parse(localStorage.getItem("pv_mine"))||[]}catch(e){}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(orders))}catch(e){}};
+const base=()=>DB_URL.replace(/\/$/,"");
+async function pull(){if(!DB_URL)return;try{const r=await fetch(base()+"/orders.json");const d=await r.json();orders=Object.values(d||{}).sort((a,b)=>b.at-a.at)}catch(e){}}
+async function put(o){if(!DB_URL)return;try{await fetch(base()+"/orders/"+o.id+".json",{method:"PUT",body:JSON.stringify(o)})}catch(e){}}
+const PL=[{n:"Free",p:"0 Robux",f:["Starter UI pack","Glass buttons","Community support"],b:"Get Free"},
+{n:"Pro",p:"200 Robux",f:["Everything in Free","Glow and Shine Effect","Priority delivery"],b:"Get it now, pay later",pop:1},
+{n:"Max",p:"800 Robux",f:["Everything in Pro","Full UI kit + custom theme","1-on-1 support"],b:"Get it now, pay later"}];
+$("#pg").innerHTML=PL.map((x,i)=>`<div class="card plan rv ${x.pop?"pop":""}">${x.pop?'<div class="tag">Most popular</div>':""}<h3>${x.n}</h3><div class="price">${x.p}<small> /month</small></div><ul>${x.f.map(t=>`<li>${t}</li>`).join("")}</ul>${i?`<button class="btn" data-i="${i}" data-m="buy">Buy</button><button class="btn g" data-i="${i}" data-m="later" style="margin-top:10px">Get it now, pay later</button><div class="note">Pay later: your UIs have a watermark until you pay.</div>`:`<button class="btn g" data-i="${i}" data-m="free">${x.b}</button>`}</div>`).join("");
+$("#pg").onclick=e=>{const b=e.target.closest("button");if(!b)return;plan=PL[b.dataset.i];mode=b.dataset.m;$("#mt").textContent=plan.n+(mode=="buy"?" · Buy":mode=="later"?" · Pay later":" plan");$("#mp").textContent=mode=="free"?"Enter your Roblox username to receive your UI.":mode=="buy"?"Enter your Roblox username. Your UIs come without a watermark.":"Enter your Roblox username. You get it now and pay later, with a watermark on the UIs.";$("#un").value="";$("#er").textContent="";$("#ok").disabled=true;$("#ov").classList.add("show");setTimeout(()=>$("#un").focus(),50)};
+const valid=v=>/^[A-Za-z0-9_]{3,20}$/.test(v.trim());
+$("#un").oninput=e=>{const v=valid(e.target.value);$("#ok").disabled=!v;$("#er").textContent=!v&&e.target.value?"Use 3–20 letters, numbers or underscores.":""};
+$("#cx").onclick=()=>$("#ov").classList.remove("show");
+$("#ov").onclick=e=>{if(e.target.id=="ov")$("#cx").click()};
+$("#ok").onclick=()=>{const u=$("#un").value.trim();if(!valid(u)){$("#er").textContent="A Roblox username is required.";return}
+const o={id:"PV-"+Math.random().toString(36).slice(2,7).toUpperCase(),user:u,plan:plan.n,price:plan.p,pay:mode,status:"Pending",at:Date.now(),acc:0};orders.unshift(o);mine.push(o.id);try{localStorage.setItem("pv_mine",JSON.stringify(mine))}catch(e){}save();put(o);$("#ov").classList.remove("show");route("orders")};
+const D=ms=>{if(ms<=0)return"Expired";const s=Math.floor(ms/1e3);return`${Math.floor(s/86400)}d ${String(Math.floor(s%86400/3600)).padStart(2,"0")}h ${String(Math.floor(s%3600/60)).padStart(2,"0")}m ${String(s%60).padStart(2,"0")}s`};
+const info=o=>`<div class="m"><b>${E(o.user)}</b> · ${o.plan}<span>${o.id} · ${o.price}/mo · ${new Date(o.at).toLocaleDateString()}${o.pay=="later"?" · pay later, watermarked":o.pay=="buy"?" · buy":""}</span></div>`;
+function rOrders(){const L=["All","Pending","Accepted","Declined","Other"];
+$("#chips").innerHTML=L.map(l=>`<button class="chip ${l==filt?"on":""}" data-f="${l}">${l}</button>`).join("");
+const a=orders.filter(o=>(!DB_URL||mine.includes(o.id))&&(filt=="All"||o.status==filt));
+$("#ol").innerHTML=a.length?a.map(o=>`<div class="card ord">${info(o)}${o.status=="Accepted"?`<div class="cd" data-end="${o.acc+DAY}">${D(o.acc+DAY-Date.now())}<small>until renewal</small></div>`:""}<span class="st ${o.status}" style="color:#fff;display:inline">${o.status}</span></div>`).join(""):'<div class="empty">No orders here yet. Head to Plans to place one.</div>'}
+$("#chips").onclick=e=>{const b=e.target.closest("button");if(b){filt=b.dataset.f;rOrders()}};
+function sync(){if(DB_URL)return;try{const s=JSON.parse(localStorage.getItem(K));if(s)orders=s}catch(e){}}
+function rAdmin(sk){sync();if(DB_URL&&!sk)pull().then(()=>{if(cur=="admin"&&unlocked&&!document.querySelector("#ad input:checked"))rAdmin(1)});const A=$("#ad");
+if(!unlocked){A.innerHTML='<div class="card gate"><h3>🔒 Owner Admin</h3><p>Enter the password to continue.</p><input type="password" id="pw" placeholder="Password"><button class="btn" id="go" style="width:100%">Unlock</button></div>';
+const go=()=>{if($("#pw").value=="admin123"){unlocked=true;rAdmin()}else{const g=$(".gate");g.classList.remove("shake");void g.offsetWidth;g.classList.add("shake");$("#pw").value=""}};$("#go").onclick=go;$("#pw").onkeydown=e=>{if(e.key=="Enter")go()};return}
+A.innerHTML=`<div class="hero" style="padding-bottom:20px"><h1>All <span class="grad">orders</span></h1></div>${DB_URL?"":'<p class="sub">Local mode: only orders from this browser. Add a database URL in the code to see orders from everyone.</p>'}<div class="bar"><button class="btn s" data-a="Accepted">Accept selected</button><button class="btn s r" data-a="Declined">Decline selected</button><button class="btn s o" data-a="Other">Mark other</button><button class="btn s g" id="sa">Select all</button><button class="btn s g" id="lk">Lock</button></div>`+(orders.length?orders.map(o=>`<div class="card ord"><input type="checkbox" data-id="${o.id}">${info(o)}${o.status=="Accepted"?`<div class="cd" data-end="${o.acc+DAY}">${D(o.acc+DAY-Date.now())}</div>`:""}<span class="st ${o.status}">${o.status}</span></div>`).join(""):'<div class="empty">No orders yet.</div>')}
+$("#ad").onclick=e=>{if(e.target.id=="lk"){unlocked=false;rAdmin();return}if(e.target.id=="sa"){document.querySelectorAll("#ad input[type=checkbox]").forEach(c=>c.checked=true);return}const b=e.target.closest("[data-a]");if(!b)return;const ids=[...document.querySelectorAll("#ad input:checked")].map(c=>c.dataset.id);if(!ids.length)return;
+sync();orders.forEach(o=>{if(ids.includes(o.id)){o.status=b.dataset.a;if(o.status=="Accepted")o.acc=Date.now();put(o)}});save();rAdmin(1)};
+function route(p){p=typeof p=="string"?p:(location.hash||"#home").slice(1);const t=["home","about","plans","orders","admin"].includes(p)?p:"home";
+cur=t;try{history.replaceState(null,"","#"+t)}catch(e){}document.querySelectorAll(".page").forEach(s=>s.classList.toggle("show",s.id==t));
+document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.p==t));
+if(t=="orders"){if(DB_URL)pull().then(()=>cur=="orders"&&rOrders());else sync();rOrders()}if(t=="admin")rAdmin();scrollTo({top:0,behavior:"smooth"});watch()}
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("in")),{threshold:.15});
+function watch(){document.querySelectorAll(".page.show .rv").forEach(r=>{io.unobserve(r);r.classList.remove("in");io.observe(r)});setTimeout(()=>document.querySelectorAll(".page.show .rv:not(.in)").forEach(r=>{if(r.getBoundingClientRect().top<innerHeight)r.classList.add("in")}),900)}
+document.addEventListener("click",e=>{const a=e.target.closest("a[href^='#']");if(!a)return;e.preventDefault();route(a.getAttribute("href").slice(1))});
+addEventListener("hashchange",()=>route());route();
+addEventListener("storage",()=>{sync();if(cur=="admin"&&unlocked)rAdmin();if(cur=="orders")rOrders()});
+setInterval(async()=>{if(!DB_URL||!((cur=="admin"&&unlocked)||cur=="orders"))return;await pull();if(document.querySelector("#ad input:checked"))return;cur=="admin"?rAdmin(1):rOrders()},5000);
+setInterval(()=>document.querySelectorAll(".cd[data-end]").forEach(c=>c.firstChild.textContent=D(c.dataset.end-Date.now())),1000);
+</script></body></html>
